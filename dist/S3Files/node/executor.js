@@ -1,16 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.S3FilesExecutor = void 0;
-const platform_1 = require("../../shared/platform");
+const plugin_base_1 = require("@gravityai-dev/plugin-base");
 const s3Service_1 = require("../service/s3Service");
 const crypto_1 = require("crypto");
+const { PromiseNode, createLogger } = (0, plugin_base_1.getPlatformDependencies)();
 const NODE_TYPE = "S3Files";
-class S3FilesExecutor extends platform_1.PromiseNode {
+class S3FilesExecutor extends PromiseNode {
     constructor() {
         super(NODE_TYPE);
     }
+    async validateConfig(config) {
+        return { success: true };
+    }
     async executeNode(inputs, config, context) {
-        const logger = (0, platform_1.createLogger)("S3Files");
+        const logger = createLogger("S3Files");
         // Build credential context for service
         const credentialContext = this.buildCredentialContext(context);
         logger.info('Starting S3 file listing', {
@@ -27,7 +30,7 @@ class S3FilesExecutor extends platform_1.PromiseNode {
                 bucket: config.bucket,
                 prefix: config.prefix,
                 maxKeys: poolSize,
-                fileExtensions: config.extensions ? config.extensions.split(',').map(ext => ext.trim()) : undefined,
+                fileExtensions: config.extensions ? config.extensions.split(",").map((ext) => ext.trim()) : undefined,
             }, credentialContext);
             // Select files based on configuration
             let files = allFiles;
@@ -52,7 +55,7 @@ class S3FilesExecutor extends platform_1.PromiseNode {
                     logger.info('Selected first N files', {
                         poolSize: allFiles.length,
                         selectedCount: files.length,
-                        requestedCount: requestedFiles
+                        requestedCount: requestedFiles,
                     });
                 }
             }
@@ -61,11 +64,11 @@ class S3FilesExecutor extends platform_1.PromiseNode {
                 // Create a shorter universal ID suitable for database storage
                 // Using first 12 characters of hash (similar to git short hash)
                 const fileIdentifier = `${file.key}|${file.size || 0}|${file.lastModified || new Date().toISOString()}`;
-                const fullHash = (0, crypto_1.createHash)('sha256').update(fileIdentifier).digest('hex');
+                const fullHash = (0, crypto_1.createHash)("sha256").update(fileIdentifier).digest("hex");
                 const universalId = fullHash.substring(0, 12); // 12 chars is enough for uniqueness
                 return {
                     ...file,
-                    universalId // Short ID for database storage
+                    universalId, // Short ID for database storage
                 };
             });
             logger.info('S3 file listing completed', {
@@ -97,5 +100,5 @@ class S3FilesExecutor extends platform_1.PromiseNode {
         };
     }
 }
-exports.S3FilesExecutor = S3FilesExecutor;
+exports.default = S3FilesExecutor;
 //# sourceMappingURL=executor.js.map

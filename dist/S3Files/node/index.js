@@ -1,13 +1,17 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.S3FilesNode = exports.NODE_TYPE = void 0;
 exports.createNodeDefinition = createNodeDefinition;
 const plugin_base_1 = require("@gravityai-dev/plugin-base");
-const executor_1 = require("./executor");
+const executor_1 = __importDefault(require("./executor"));
 exports.NODE_TYPE = "S3Files";
 function createNodeDefinition() {
     const { NodeInputType } = (0, plugin_base_1.getPlatformDependencies)();
     return {
+        packageVersion: "1.0.3",
         type: exports.NODE_TYPE,
         name: "S3 Files",
         description: "List files from an S3 bucket with optional filtering",
@@ -83,6 +87,6 @@ function createNodeDefinition() {
 const definition = createNodeDefinition();
 exports.S3FilesNode = {
     definition,
-    executor: executor_1.S3FilesExecutor,
+    executor: executor_1.default,
 };
 //# sourceMappingURL=index.js.map

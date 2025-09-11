@@ -1,11 +1,13 @@
-import { type NodeExecutionContext } from "@gravityai-dev/plugin-base";
+import { getPlatformDependencies, type NodeExecutionContext } from "@gravityai-dev/plugin-base";
 import { S3FileContentConfig, S3FileContentExecutorOutput } from "../util/types";
-import { PromiseNode, createLogger } from "../../shared/platform";
 import { getS3FileContent } from "../service/s3FileContentService";
+
+// Get platform dependencies
+const { PromiseNode, createLogger } = getPlatformDependencies();
 
 const NODE_TYPE = "S3FileContent";
 
-export class S3FileContentExecutor extends PromiseNode<S3FileContentConfig> {
+export default class S3FileContentExecutor extends PromiseNode<S3FileContentConfig> {
   constructor() {
     super(NODE_TYPE);
   }

@@ -1,5 +1,5 @@
 import { getPlatformDependencies, type EnhancedNodeDefinition } from "@gravityai-dev/plugin-base";
-import { S3FilesExecutor } from "./executor";
+import S3FilesExecutor from "./executor";
 
 export const NODE_TYPE = "S3Files";
 
@@ -7,6 +7,7 @@ function createNodeDefinition(): EnhancedNodeDefinition {
   const { NodeInputType } = getPlatformDependencies();
   
   return {
+    packageVersion: "1.0.3",
     type: NODE_TYPE,
     name: "S3 Files",
     description: "List files from an S3 bucket with optional filtering",

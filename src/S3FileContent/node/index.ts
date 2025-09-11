@@ -1,5 +1,5 @@
 import { getPlatformDependencies, type EnhancedNodeDefinition } from "@gravityai-dev/plugin-base";
-import { S3FileContentExecutor } from "./executor";
+import S3FileContentExecutor from "./executor";
 
 export const NODE_TYPE = "S3FileContent";
 
@@ -7,6 +7,7 @@ function createNodeDefinition(): EnhancedNodeDefinition {
   const { NodeInputType } = getPlatformDependencies();
   
   return {
+    packageVersion: "1.0.3",
     type: NODE_TYPE,
     name: "S3 File Content",
     description: "Fetch content of a single S3 file",

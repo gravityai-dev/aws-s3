@@ -1,15 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.S3FileContentExecutor = void 0;
-const platform_1 = require("../../shared/platform");
+const plugin_base_1 = require("@gravityai-dev/plugin-base");
 const s3FileContentService_1 = require("../service/s3FileContentService");
+// Get platform dependencies
+const { PromiseNode, createLogger } = (0, plugin_base_1.getPlatformDependencies)();
 const NODE_TYPE = "S3FileContent";
-class S3FileContentExecutor extends platform_1.PromiseNode {
+class S3FileContentExecutor extends PromiseNode {
     constructor() {
         super(NODE_TYPE);
     }
     async executeNode(inputs, config, context) {
-        const logger = (0, platform_1.createLogger)("S3FileContent");
+        const logger = createLogger("S3FileContent");
         // Build credential context for service
         const credentialContext = this.buildCredentialContext(context);
         // Get file from config - ALL data comes through config (template-resolved)
@@ -68,5 +69,5 @@ class S3FileContentExecutor extends platform_1.PromiseNode {
         };
     }
 }
-exports.S3FileContentExecutor = S3FileContentExecutor;
+exports.default = S3FileContentExecutor;
 //# sourceMappingURL=executor.js.map
