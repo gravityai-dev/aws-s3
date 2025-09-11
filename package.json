@@ -1,6 +1,6 @@
 {
   "name": "@gravityai-dev/aws-s3",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AWS S3 storage nodes for Gravity workflow system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
