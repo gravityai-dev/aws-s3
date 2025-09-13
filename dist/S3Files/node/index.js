@@ -11,7 +11,7 @@ exports.NODE_TYPE = "S3Files";
 function createNodeDefinition() {
     const { NodeInputType } = (0, plugin_base_1.getPlatformDependencies)();
     return {
-        packageVersion: "1.0.4",
+        packageVersion: "1.0.7",
         type: exports.NODE_TYPE,
         name: "S3 Files",
         description: "List files from an S3 bucket with optional filtering",
