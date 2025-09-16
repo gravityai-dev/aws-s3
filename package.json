@@ -1,6 +1,6 @@
 {
   "name": "@gravityai-dev/aws-s3",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "AWS S3 storage nodes for Gravity workflow system",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
   "author": "Gravity AI",
   "license": "MIT",
   "dependencies": {
-    "@gravityai-dev/plugin-base": "^1.0.21",
+    "@gravityai-dev/plugin-base": "^1.0.22",
     "@aws-sdk/client-s3": "^3.0.0",
     "@aws-sdk/s3-request-presigner": "^3.0.0",
     "crypto": "^1.0.1"
@@ -29,6 +29,6 @@
     "@types/node": "^20.0.0"
   },
   "peerDependencies": {
-    "@gravityai-dev/plugin-base": "^1.0.21"
+    "@gravityai-dev/plugin-base": "^1.0.22"
   }
 }
