@@ -11,7 +11,7 @@ exports.NODE_TYPE = "S3FileContent";
 function createNodeDefinition() {
     const { NodeInputType } = (0, plugin_base_1.getPlatformDependencies)();
     return {
-        packageVersion: "1.0.18",
+        packageVersion: "1.0.19",
         type: exports.NODE_TYPE,
         name: "S3 File Content",
         description: "Fetch content of a single S3 file",
